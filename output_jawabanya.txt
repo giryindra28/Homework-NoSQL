@@ -1,0 +1,94 @@
+> db.createCollection('buku')
+{ "ok" : 1 }
+... });
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63fc68dc40eaff657f77e281")
+}
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 15 }
+
+> db.buku.insertMany([
+...     {
+...     _id : 1,
+...     buku: "Dilan: Dia adalah dilanku tahun 1990",
+...     author: "Pidi Baiq",
+...     tags: "Romance",
+...     harga: 55000,
+...     stock: 4
+...     },
+...     {
+...     _id: 2,
+...     buku: "Dilan 2: Dia adalah dilanku tahun 1991",
+...     author: "Pidi Baiq",
+...     tags: "Romance",
+...     harga: 250000,
+...     stock: 2
+...     },
+...     {
+...     _id: 3,
+...     buku: "Milea: Suara Dari Dilan",
+... });
+{ "_id" : 2, "buku" : "Dilan 2: Dia adalah dilanku tahun 1991", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 250000, "stock" : 2 }
+{ "_id" : 4, "buku" : "Ancika: Dila yang Bersamaku Tahun 1995", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 500000, "stock" : 3 }
+
+> db.buku.updateOne({
+...     _id: 1
+... },{
+...     $set: {
+...         tags: "Action and Romance"
+...     }
+... });
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 15 }
+{ "_id" : 1, "buku" : "Dilan: Dia adalah dilanku tahun 1990", "author" : "Pidi Baiq", "tags" : "Action and Romance", "harga" : 55000, "stock" : 4 }
+{ "_id" : 2, "buku" : "Dilan 2: Dia adalah dilanku tahun 1991", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 250000, "stock" : 2 }
+{ "_id" : 3, "buku" : "Milea: Suara Dari Dilan", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 75000, "stock" : 10 }
+{ "_id" : 4, "buku" : "Ancika: Dila yang Bersamaku Tahun 1995", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 500000, "stock" : 3 }
+
+> db.buku.updateMany({},[
+...     {
+...         $set: {
+...             stock: 25
+...         }
+...     }
+... ]);
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 25 }
+{ "_id" : 1, "buku" : "Dilan: Dia adalah dilanku tahun 1990", "author" : "Pidi Baiq", "tags" : "Action and Romance", "harga" : 55000, "stock" : 25 }
+{ "_id" : 2, "buku" : "Dilan 2: Dia adalah dilanku tahun 1991", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 250000, "stock" : 25 }
+{ "_id" : 3, "buku" : "Milea: Suara Dari Dilan", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 75000, "stock" : 25 }
+{ "_id" : 4, "buku" : "Ancika: Dila yang Bersamaku Tahun 1995", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 500000, "stock" : 25 }
+
+> db.buku.deleteOne({
+...     _id: "63fc68dc40eaff657f77e281"
+... });
+{ "acknowledged" : true, "deletedCount" : 0 }
+
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 25 }
+{ "_id" : 1, "buku" : "Dilan: Dia adalah dilanku tahun 1990", "author" : "Pidi Baiq", "tags" : "Action and Romance", "harga" : 55000, "stock" : 25 }
+{ "_id" : 2, "buku" : "Dilan 2: Dia adalah dilanku tahun 1991", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 250000, "stock" : 25 }
+{ "_id" : 3, "buku" : "Milea: Suara Dari Dilan", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 75000, "stock" : 25 }
+{ "_id" : 4, "buku" : "Ancika: Dila yang Bersamaku Tahun 1995", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 500000, "stock" : 25 }
+
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 25 }
+{ "_id" : 1, "buku" : "Dilan: Dia adalah dilanku tahun 1990", "author" : "Pidi Baiq", "tags" : "Action and Romance", "harga" : 55000, "stock" : 25 }
+{ "_id" : 2, "buku" : "Dilan 2: Dia adalah dilanku tahun 1991", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 250000, "stock" : 25 }
+{ "_id" : 3, "buku" : "Milea: Suara Dari Dilan", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 75000, "stock" : 25 }
+{ "_id" : 4, "buku" : "Ancika: Dila yang Bersamaku Tahun 1995", "author" : "Pidi Baiq", "tags" : "Romance", "harga" : 500000, "stock" : 25 }
+
+> db.buku.deleteOne({
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 7...     }
+... }){ "acknowledged" : true, "deletedCount" : 3 }
+
+> db.buku.find()
+{ "_id" : ObjectId("63fc68dc40eaff657f77e281"), "buku" : "Nanti Kita Cerita Tentang Hari Ini", "author" : "Marchella FP", "tags" : "Self Healing", "harga" : 75000, "stock" : 25 }
+>
